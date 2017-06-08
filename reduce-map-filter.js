@@ -52,3 +52,19 @@ function reducer3(arr,val) {
 }
 
 console.log(items.reduce(reducer3,{}));
+
+//Flatten Array
+
+var nArr = [[1,2,3],[4,5,6],[7,8,9]];
+
+console.log(nArr.reduce(function(a,v){
+  return a.concat(v);
+},[]));
+
+//Reduce Right
+
+console.log(nArr.reduceRight(function(a,v){
+  return a.concat(v);
+},[]));
+
+// Flat Map
