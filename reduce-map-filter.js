@@ -68,3 +68,80 @@ console.log(nArr.reduceRight(function(a,v){
 },[]));
 
 // Flat Map
+
+
+function increment(value)  {return value + 1;}
+function decrement(value)  {return value - 1;}
+function double(value)  {return value * 2;}
+function halve(value)  {return value / 2;}
+
+var pipeline = [
+  increment,
+  double,
+  decrement,
+  halve,
+  decrement,
+  double
+];
+
+var initial_value = 5;
+var final_value = pipeline.reduce(function(final,fn) {
+  //console.log("Function is %s - Arg is %s",fn,final)
+  return fn(final);
+},initial_value);
+
+console.log(final_value);
+
+var input = [
+  {
+    title: "Batman Begins",
+    year: 2005,
+    cast: [
+      "Christian Bale",
+      "Michael Caine",
+      "Liam Neeson",
+      "Katie Holmes",
+      "Gary Oldman",
+      "Cillian Murphy"
+    ]
+  },
+  {
+    title: "The Dark Knight",
+    year: 2008,
+    cast: [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine",
+      "Maggie Gyllenhal",
+      "Gary Oldman",
+      "Morgan Freeman"
+    ]
+  },
+  {
+    title: "The Dark Knight Rises",
+    year: 2012,
+    cast: [
+      "Christian Bale",
+      "Gary Oldman",
+      "Tom Hardy",
+      "Joseph Gordon-Levitt",
+      "Anne Hathaway",
+      "Marion Cotillard",
+      "Morgan Freeman",
+      "Michael Caine"
+    ]
+  }
+];
+
+var stars = input.reduce(function(movies,movie){
+  return movie.cast.reduce(function(actors,actor){
+    if(actors.indexOf(actor) === -1){
+      actors.push(actor);
+    }
+    return actors;
+      
+  },movies);
+},[]);
+
+console.log(stars);
